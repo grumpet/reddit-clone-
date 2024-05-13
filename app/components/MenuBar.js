@@ -20,33 +20,35 @@ return (
 const styles = StyleSheet.create({
   menuBar: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
     backgroundColor: 'black',
     borderBlockEndColor : 'white',
-    borderWidth: 0.1
+    borderWidth: 0.1,
 
   },
   searchBar: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end', 
+    justifyContent: 'center', 
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     paddingLeft: 10,
     backgroundColor: '#181818',
     borderRadius: 20,
-    marginLeft: 10,
-    marginRight: 10,
+    flex: 0.5,
+    alignItems: 'center',
+
+
+  
+
     
   },
 
   rightIcons:{
     flexDirection: 'row',
-    justifyContent: 'flex-end', // Added this line
-    flex: 0.1
-
+    justifyContent: 'flex-end', 
+    
   }
 });
 
