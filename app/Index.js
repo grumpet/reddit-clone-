@@ -2,18 +2,20 @@
 import { View, Text, Pressable } from 'react-native';
 import React, { useEffect } from 'react';
 import globalStyles from './globalStyles';
-
+import MenuBar from './components/MenuBar'
 const Index = ({ route, navigation }) => {
   
   useEffect(() => {
-    if (route.params.username === undefined) {
+    if (route.params === undefined) {
       navigation.navigate('Login');
       console.log('No email or username');
     }
 
   }, [route.params]);
   return (
-    
+<View>
+<MenuBar />
+
     <View style={globalStyles.container}>
       <Text style={globalStyles.text}>Index</Text>
       <Pressable onPress={() => navigation.navigate('Profile')}>
@@ -30,6 +32,7 @@ const Index = ({ route, navigation }) => {
       </Pressable>
 
 
+    </View>
     </View>
   );
 };
