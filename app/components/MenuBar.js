@@ -1,17 +1,23 @@
-import React from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import React,{useState} from 'react'
+import { View, TextInput, StyleSheet ,Text} from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // You can use any icon library
+import { useNavigation } from '@react-navigation/native';
 
-const MenuBar = () => {
+const MenuBar = ({ }) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const navigation = useNavigation();
+
 return (
     <View style={styles.menuBar}>
+    
         <Ionicons name="menu" size={24} color="white" />
-        <TextInput style={styles.searchBar} placeholder="Search..."  placeholderTextColor="white" />
+
+        <TextInput style={styles.searchBar} placeholder={isFocused? '':"Search..." } onFocus={()=>setIsFocused(true)} onBlur={()=> setIsFocused(false)} placeholderTextColor="white" />
         <View style={styles.rightIcons}>
-            <Ionicons name="chatbubble" size={24} color="white" /> 
+            <Ionicons name="chatbubble" size={24} color="white" onPress={() => navigation.navigate('Chat')} /> 
             <Ionicons name="add" size={24} color="white"/>
             <Ionicons name="notifications" size={24} color="white" />
-            <Ionicons name="person" size={24} color="white"/>
+            <Ionicons name="person" size={24} color="white" onPress={() => navigation.navigate('Profile')}/>
         </View>
     </View>
 );
@@ -38,11 +44,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     flex: 0.5,
     alignItems: 'center',
+    color: 'white',
 
-
-  
-
-    
   },
 
   rightIcons:{

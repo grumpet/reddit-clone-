@@ -1,5 +1,5 @@
 // Index.js
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable,Image } from 'react-native';
 import React, { useEffect } from 'react';
 import globalStyles from './globalStyles';
 import MenuBar from './components/MenuBar'
@@ -31,8 +31,8 @@ const Index = ({ route, navigation }) => {
         <Text style={globalStyles.text}>Settings</Text>
       </Pressable>
 
-
     </View>
+
     </View>
   );
 };
