@@ -6,11 +6,26 @@ import { useNavigation } from '@react-navigation/native';
 const MenuBar = ({ }) => {
   const [isFocused, setIsFocused] = useState(false);
   const navigation = useNavigation();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
 return (
     <View style={styles.menuBar}>
     
-        <Ionicons name="menu" size={24} color="white" />
+        <Ionicons 
+        name="menu"
+        size={24}
+        color="white"
+        onPress={
+          () => {
+            if(isDrawerOpen){
+              navigation.navigate('Drawer');
+              setIsDrawerOpen(false);
+            }else{
+              navigation.navigate('Index');
+              setIsDrawerOpen(true);
+            }
+          }
+        }/>
 
         <TextInput style={styles.searchBar} placeholder={isFocused? '':"Search..." } onFocus={()=>setIsFocused(true)} onBlur={()=> setIsFocused(false)} placeholderTextColor="white" />
         <View style={styles.rightIcons}>

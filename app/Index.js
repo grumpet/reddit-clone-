@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import globalStyles from './globalStyles';
 import MenuBar from './components/MenuBar'
 const Index = ({ route, navigation }) => {
-  
+  /*
   useEffect(() => {
     if (route.params === undefined) {
       navigation.navigate('Login');
@@ -12,6 +12,7 @@ const Index = ({ route, navigation }) => {
     }
 
   }, [route.params]);
+  */
   return (
 <View>
 <MenuBar />
