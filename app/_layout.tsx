@@ -23,7 +23,7 @@ function DrawerLayout() {
   return (
     <Drawer.Navigator 
     screenOptions={{
-      drawerType: dimensions.width >= 7 ? 'permanent' : 'front',
+      drawerType: dimensions.width >= 762 ? 'permanent' : 'front',
       drawerActiveTintColor: 'white',
       drawerInactiveTintColor: 'white',
       drawerStyle: {
@@ -35,6 +35,7 @@ function DrawerLayout() {
     >
       <Drawer.Screen name="Home" component={Index} options={{headerShown:false}}/>
       <Drawer.Screen name="Settings" component={Settings} options={{headerShown:false}}/>
+
     </Drawer.Navigator>
   );
 }
@@ -52,6 +53,7 @@ export default function Layout() {
       <MenuBar/>
       <Stack.Navigator>
 
+      <Stack.Screen name="Drawer" component={DrawerLayout} options={{headerShown: false}}/>
 
         <Stack.Screen name="Index" component={Index} options={{ headerShown: false }}/>
         <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }}/>
@@ -60,7 +62,6 @@ export default function Layout() {
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>
         <Stack.Screen name="Settings" component={Settings} options={{ headerShown: false }}/>
         <Stack.Screen name="RegisterPassword" component={RegisterPassword} options={{ headerShown: false }}/>
-        <Stack.Screen name="Drawer" component={DrawerLayout} options={{headerShown: false}}/>
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -99,7 +99,7 @@ const styles = StyleSheet.create ({
   continue_button:{
       flex: 0.7,
       width: '90%',
-      backgroundColor: "#FF0000",
+      backgroundColor: "#473BF0",
       borderRadius: 20,
       justifyContent: 'center',
       alignItems: 'center',

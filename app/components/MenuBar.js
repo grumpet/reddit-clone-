@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 const MenuBar = ({ }) => {
   const [isFocused, setIsFocused] = useState(false);
   const navigation = useNavigation();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
 return (
     <View style={styles.menuBar}>
