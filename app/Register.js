@@ -6,9 +6,12 @@ import { Link } from 'expo-router';
 
 
 const Register = ({navigation}) => {
+   
+
     const [isFocused, setIsFocused] = useState(false);
-    
     const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');  // New state variable for the error message
+
     const isValidEmail = (email) => {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
@@ -24,27 +27,38 @@ const Register = ({navigation}) => {
                     <View style={styles.body_register}>
                     <TextInput
                         style={styles.TextInput}
-                        placeholder={isFocused ? '' : 'Email'}
-                        onFocus={() => setIsFocused(true)}
+                        placeholder={emailError ? emailError : (isFocused ? '' : 'Email')}
+                        onFocus={() =>{
+                         setIsFocused(true)
+                         setEmailError('');
+                        }}
                         onBlur={() => setIsFocused(false)}
                         onChangeText={text => setEmail(text)}
                         
                     />
+                    {emailError ? <Text style={{color: 'red'}}>{emailError}</Text> : null}  
+
                     <View style={styles.transparentcontiainersmall}></View>
 
-                        <Text style={styles.text_register} >
-                            Allready have an account? Press here to <Link href={"Login"} style={{color: '#0099ff'}} >Login</Link>
+                    <Text style={styles.text_register} >
+                        Already have an account? Press here to 
+                        <Text 
+                            style={{color: '#0099ff'}} 
+                            onPress={() => navigation.navigate('Login')}
+                        >
+                           {" Login"}
                         </Text>
-
+                    </Text>
                         <Pressable 
                             style={styles.continue_button}
                             onPress={() => {
                                 console.log(email);
                                 if (!isValidEmail(email)) {
-                                    alert('Please enter a valid email');
+                                    setEmailError('Please enter a valid email'); 
                                     return;
                                 }
                                 else{
+                                    setEmailError('');  
                                     navigation.navigate('RegisterPassword', { email: email });
                                 }
 
@@ -90,7 +104,7 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
     },
     continue_button:{
-        flex: 0.4,
+        flex: 0.5,
         width: '90%',
         backgroundColor: "#473BF0",
         borderRadius: 20,

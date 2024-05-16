@@ -1,10 +1,10 @@
 // Index.js
 import { View, Text, Pressable,Image ,StyleSheet} from 'react-native';
-import React, { useEffect } from 'react';
-import globalStyles from './globalStyles';
-import MenuBar from './components/MenuBar'
+import React, { useEffect, useState } from 'react';
+
+
 const Index = ({ route, navigation }) => {
-  /*
+
   useEffect(() => {
     if (route.params === undefined) {
       navigation.navigate('Login');
@@ -12,7 +12,9 @@ const Index = ({ route, navigation }) => {
     }
 
   }, [route.params]);
-  */
+
+
+
   return (
 <View style={styles.container}>
 

@@ -39,7 +39,15 @@ const Login = ({ navigation }) => {
                     
                          
           </View>
-          <Text style={styles.text_register}>Press here to <Link href={"Register"} style={{color: '#0099ff'}}>sign up</Link></Text>
+          <Text style={styles.text_register}>
+                Don't have an account? Press here to
+                <Text 
+                    style={{color: '#0099ff'}} 
+                    onPress={() => navigation.navigate('Register')}
+                >
+                    {" Register"}
+                    </Text>
+          </Text>
 
           <Pressable 
                             style={styles.continue_button}

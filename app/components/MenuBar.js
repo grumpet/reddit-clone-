@@ -1,12 +1,33 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react';
 import { View, TextInput, StyleSheet ,Text} from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // You can use any icon library
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const MenuBar = ({ }) => {
   const [isFocused, setIsFocused] = useState(false);
   const navigation = useNavigation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [data, setData] = useState('disconected from server');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:5000');
+        setData(response.data);
+      } catch (error) {
+        setData('disconected from server');
+        console.error('There was an error!', error);
+      }
+    };
+    
+  
+    fetchData(); // Fetch data immediately when the component mounts
+    const intervalId = setInterval(fetchData, 60000); // Fetch data every minute
+  
+    // Clean up function
+    return () => clearInterval(intervalId); // This will clear the interval when the component unmounts
+  }, []);
 
 return (
     <View style={styles.menuBar}>
@@ -26,6 +47,7 @@ return (
             }
           }
         }/>
+            <Text style={styles.text}>{data}</Text>
 
         <TextInput style={styles.searchBar} placeholder={isFocused? '':"Search..." } onFocus={()=>setIsFocused(true)} onBlur={()=> setIsFocused(false)} placeholderTextColor="white" />
         <View style={styles.rightIcons}>
@@ -39,6 +61,9 @@ return (
 };
 
 const styles = StyleSheet.create({
+  text:{ 
+    color: 'white',
+  },  
   menuBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -57,7 +82,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     backgroundColor: '#181818',
     borderRadius: 20,
-    flex: 0.5,
+    flex: 0.6,
     alignItems: 'center',
     color: 'white',
 

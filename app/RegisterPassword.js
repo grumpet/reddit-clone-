@@ -1,11 +1,24 @@
 import { View, Text ,StyleSheet,TextInput , Pressable} from 'react-native'
 import React,{useState} from 'react'
-
+import axios from 'axios';
 const RegisterPassword = ({ route, navigation }) => {
+    
+async function register(email, username, password) {
+    try {
+      const response = await axios.post('http://localhost:5000/register', {
+        email,
+        username,
+        password,
+      });
+  
+      console.log(response.data.message);
+    } catch (error) {
+      console.error('Error:', error.response.data.error);
+    }
+  }
   const { email } = route.params;
   const [isFocused_username, setIsFocused_username] = useState(false);
   const [isFocused_password, setIsFocused_password] = useState(false);
-
   const [password, setPassword] = useState('');
   //add a function to check if the password is valid
   const [username, setUsername] = useState('');
@@ -48,7 +61,8 @@ const RegisterPassword = ({ route, navigation }) => {
                                     return;
                                 }
                                 else{
-                                    navigation.navigate('Index', { email: email, username: username, password: password});
+                                    register(email, username, password);
+                                    navigation.navigate('Index', { email: email, username: username});
                                 }
 
                             }}
