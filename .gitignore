@@ -20,5 +20,5 @@ expo-env.d.ts
 # @end expo-cli
 # Local Netlify folder
 .netlify
-back\venv
-back\__pycache__
+back/venv
+back/__pycache__
