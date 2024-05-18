@@ -22,3 +22,6 @@ expo-env.d.ts
 .netlify
 back/venv
 back/__pycache__
+back/reddit-clone-fdade-firebase-adminsdk-80zb3-b326aae1ba.json
+back/.env
+back/reddit-clone-fdade-firebase-adminsdk-80zb3-a920ba2736.json

@@ -14,7 +14,7 @@ const Button = ({ number }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Text style={styles.buttonText}>Button {number}</Text>
+      <Text style={styles.buttonText}>{number}</Text>
     </Pressable>
   );
 };
@@ -23,9 +23,9 @@ const Settings = () => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Button number={1} />
-        <Button number={2} />
-        <Button number={3} />
+        <Button number={"logout"} />
+        <Button number={"dark-mode"} />
+        <Button number={"delete-user"} />
       </View>
       <View style={styles.row}>
         <Button number={4} />

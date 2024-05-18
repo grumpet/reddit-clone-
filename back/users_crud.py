@@ -6,12 +6,24 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 users = db.collection('users')
 
+liked_songs = db.collection('liked_songs')
+
+def add_liked_songs_dict(username, liked_songs_dict):
+    liked_songs.document(username).set(liked_songs_dict)
+    return {"message": "Liked songs added"}, 200
+
 def add_user(email, username, password):
     user = users.document(username)
     if user.get().exists:
         return {"message": "username already exists"}, 400
     user.set({"email": email, "password": password})
     return {"message": "Registration complete"}, 200
+
+def add_spotify_user(email, username):
+    user = users.document(username)
+    if user.get().exists:
+        return {"message": "username already exists"}, 400
+    user.set({"email": email})
 
 
 def get_user(username):
@@ -54,3 +66,11 @@ def username_email_exists(username, email):
         elif user.to_dict()["email"] == email:
             return "email already exists"
     return False
+
+
+def two_users_simillar_liked_songs(user1, user2):
+    user1_liked_songs = liked_songs.document(user1).get().to_dict()
+    user2_liked_songs = liked_songs.document(user2).get().to_dict()
+    simillar_songs = {song: user1_liked_songs[song] for song in user1_liked_songs if song in user2_liked_songs}
+    return simillar_songs
+

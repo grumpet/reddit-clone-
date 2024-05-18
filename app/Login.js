@@ -1,9 +1,22 @@
 import { View, Text ,StyleSheet,TextInput, Pressable} from 'react-native'
 import React,{useState} from 'react'
-import { Link } from 'expo-router';
+import axios from 'axios';
 
 
 const Login = ({ navigation }) => {
+
+const loginUser = async (username, password) => {
+  try {
+    const response = await axios.post('http://localhost:5000/login', {
+      username: username,
+      password: password
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
   const [isFocused_username, setIsFocused_username] = useState(false);
   const [isFocused_password, setIsFocused_password] = useState(false);
   const [username, setUsername] = useState('');
@@ -58,8 +71,24 @@ const Login = ({ navigation }) => {
                                     return;
                                 }
                                 else{
-                                  console.log(username, password,"login");
-                                    navigation.navigate('Index', {username: username, password: password});
+                                console.log(username, password,"login");
+                                try {
+                                    const loginUser_func = async () => {
+                                        const data = await loginUser(username, password);
+                                        if (data) {
+                                            console.log("login success");
+                                            navigation.navigate('Index', {username: username, password: password});
+                                        } else {
+                                            console.log("login failed");
+                                            alert('login failed');
+                                        }
+                                    };
+                                    loginUser_func();
+                                } catch (error) {
+                                    console.error(error);
+                                    alert('An error occurred');
+                                }
+                          
                                 }
 
                             }}
